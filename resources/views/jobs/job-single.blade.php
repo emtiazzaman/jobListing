@@ -1,6 +1,8 @@
+@props(['job'])
+
 <x-layout :title="'Job Details | '">
     
-    <x-breadcrumb/>
+    <x-breadcrumb :bread_name=" $job->job_title.' in '.$job->name "/>
     
     <div class="job_details_area">
         <div class="container">
@@ -10,16 +12,20 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="img/svg_icon/1.svg" alt="">
+                                    @if ($job->logo=='')
+                                    <img class="img-fluid" src="{{ asset( 'img/svg_icon/1.svg' ) }}" alt="logo">
+                                    @else
+                                        <img  class="img-fluid" src="{{ asset( 'storage/'.$job->logo ) }}" alt="logo">
+                                    @endif
                                 </div>
                                 <div class="jobs_conetent">
-                                    <a href="#"><h4>Software Engineer</h4></a>
+                                    <a href="#"><h4>{{$job->title}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
+                                            <p> <i class="fa fa-map-marker"></i> {{$job->location}}</p>
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> Part-time</p>
+                                            <p> <i class="fa fa-clock-o"></i> {{$job->qualification}} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -34,32 +40,7 @@
                     <div class="descript_wrap white-bg">
                         <div class="single_wrap">
                             <h4>Job description</h4>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
-                            <p>Variations of passages of lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
-                        </div>
-                        <div class="single_wrap">
-                            <h4>Responsibility</h4>
-                            <ul>
-                                <li>The applicants should have experience in the following areas.
-                                </li>
-                                <li>Have sound knowledge of commercial activities.</li>
-                                <li>Leadership, analytical, and problem-solving abilities.</li>
-                                <li>Should have vast knowledge in IAS/ IFRS, Company Act, Income Tax, VAT.</li>
-                            </ul>
-                        </div>
-                        <div class="single_wrap">
-                            <h4>Qualifications</h4>
-                            <ul>
-                                <li>The applicants should have experience in the following areas.
-                                </li>
-                                <li>Have sound knowledge of commercial activities.</li>
-                                <li>Leadership, analytical, and problem-solving abilities.</li>
-                                <li>Should have vast knowledge in IAS/ IFRS, Company Act, Income Tax, VAT.</li>
-                            </ul>
-                        </div>
-                        <div class="single_wrap">
-                            <h4>Benefits</h4>
-                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing.</p>
+                            <p> {{$job->description}} </p>
                         </div>
                     </div>
                     <div class="apply_job_form white-bg">
@@ -114,11 +95,12 @@
                         </div>
                         <div class="job_content">
                             <ul>
-                                <li>Published on: <span>12 Nov, 2019</span></li>
-                                <li>Vacancy: <span>2 Position</span></li>
-                                <li>Salary: <span>50k - 120k/y</span></li>
-                                <li>Location: <span>California, USA</span></li>
-                                <li>Job Nature: <span> Full-time</span></li>
+                                <li>Published on: <span>{{$job->updated_at}}</span></li>
+                                <li>Vacancy: <span>{{$job->vacancy}} Position</span></li>
+                                <li>Salary: <span>{{$job->yearly_salary}}/yearly</span></li>
+                                <li>Location: <span>{{$job->location}}</span></li>
+                                <li>Job Nature: <span>{{$job->job_type}}</span></li>
+                                <li>Experience Requirement: <span>{{$job->experience}} years</span></li>
                             </ul>
                         </div>
                     </div>

@@ -1,10 +1,10 @@
 <x-layout :title="'Find your dream job | '">
 
-<x-hero-slider/>
+<x-hero-slider :jobs="$jobs"/>
 
 <x-category/>
 
-<x-popular-category/>
+<x-popular-category :categories="$categories"/>
 
 <x-job-list :jobs="$jobs" />
 
@@ -37,4 +37,7 @@
 
 <x-testimonials/>
 
+<x-notice />
+
 </x-layout>
+

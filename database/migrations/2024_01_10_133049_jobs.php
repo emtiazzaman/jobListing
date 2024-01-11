@@ -13,12 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
+        
+        
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+        
+        
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('logo')->nullable();
             $table->string('job_title');
             $table->string('location');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('category');
             $table->string('experience');
             $table->string('job_type');
@@ -29,6 +39,8 @@ return new class extends Migration
             $table->text('description');
             $table->timestamps();
         });
+
+
     }
 
     /**

@@ -1,4 +1,4 @@
-<!-- catagory_area -->
+
 <div class="catagory_area">
     <div class="container">
         <div class="row cat_search">

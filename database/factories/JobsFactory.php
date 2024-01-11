@@ -16,12 +16,12 @@ class JobsFactory extends Factory
      */
     public function definition()
     {
-        return [
-          
-            'name'=>fake()->name(),
+        return 
+        [
+            'name'=>fake()->company(),
             'job_title'=>fake()->sentence(),
             'location'=> fake()->city(),
-            'category'=>'Web development',
+            'category'=>'Web Development',
             'experience'=>fake()->randomDigitNot(0),
             'job_type'=>'Full Time',
             'qualification'=>'Graduate',

@@ -18,17 +18,19 @@
         <div class="job_lists">
             <div class="row">
                 @unless (count($jobs)==0)
-
                     @foreach ($jobs as $job)
-
                         <div class="col-lg-12 col-md-12">
                             <div class="single_jobs white-bg d-flex justify-content-between">
                                 <div class="jobs_left d-flex align-items-center">
                                     <div class="thumb">
-                                        <img src="img/svg_icon/1.svg" alt="">
+                                        @if ($job->logo=='')
+                                            <img class="img-fluid" src="{{ asset( 'img/svg_icon/1.svg' ) }}" alt="logo">
+                                        @else
+                                            <img  class="img-fluid" src="{{ asset( 'storage/'.$job->logo ) }}" alt="logo">
+                                        @endif
                                     </div>
                                     <div class="jobs_conetent">
-                                        <a href="/jobs/1"><h4>{{ $job->job_title }}</h4></a>
+                                        <a href="/jobs/{{ $job->id }}"><h4>{{ $job->job_title }}</h4></a>
                                         <div class="links_locat d-flex align-items-center">
                                             <div class="location">
                                                 <p> <i class="fa fa-map-marker"></i> {{ $job->location }}</p>

@@ -7471,4 +7471,8 @@ h6 {
   font-size: 12px;
 }
 
+.nice-select,textarea{
+  color: #7A838B !important;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobsController;
 use App\Http\Controllers\MainController;
 
 /*
@@ -24,17 +25,19 @@ Route::get('/jobs', function () {
     return view('jobs.jobs-full-browse');
 });
 
-Route::get('/jobs/{job-id}', function () {
-    return view('jobs.job-single');
-});
+//show single job
+Route::get('/jobs/{job_id}', [JobsController::class,'show_single_job'] );
+
+
+//view job creation from
+Route::get('/create-job', [JobsController::class,'create_job'] );
+
+//store new jobs
+Route::post('/jobs-process',[JobsController::class,'store_job'] );
 
 
 Route::get('/contact', function () {
     return view('users.contact');
-});
-
-Route::get('/create-job', function () {
-    return view('users.create-job');
 });
 
 Route::get('/register', function () {
