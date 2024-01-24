@@ -1,14 +1,14 @@
 <x-layout :title="'Find your dream job | '">
 
-<x-hero-slider :jobs="$jobs"/>
+<x-hero-slider :jobs="$jobs" />
 
-<x-category/>
+<x-category  :all_job_data="$all_job_data" />
 
-<x-popular-category :categories="$categories"/>
+<x-popular-category :categories="$categories" />
 
 <x-job-list :jobs="$jobs" />
 
-<x-featured-candidates/>
+<x-featured-candidates :candidates="$users"/>
 
 <x-top-companies/>
 

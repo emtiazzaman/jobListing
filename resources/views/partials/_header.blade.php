@@ -39,14 +39,14 @@
                 <div class="container-fluid ">
                     <div class="header_bottom_border">
                         <div class="row align-items-center">
-                            <div class="col-xl-3 col-lg-2">
+                            <div class="col-lg-2">
                                 <div class="logo">
                                     <a href="/">
                                         <img src="{{asset('img/logo.png')}}" alt="">
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-7">
+                            <div class="col-lg-4">
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
@@ -58,8 +58,29 @@
                                     </nav>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="col-lg-6 d-none d-lg-block">
                                 <div class="Appointment">
+
+                                @auth 
+
+                                  <div class="phone_num d-none d-xl-block">
+                                     <a href="#">
+                                            <i class="fa fa-user text-light"></i>
+                                            {{auth()->user()->full_name}}
+                                    </a>
+                                        
+                                    </div>
+                                    <div class="phone_num d-none d-xl-block">
+                                        <i class="fa fa-briefcase text-light"></i>
+                                        <a class="text-bold" href="/jobs/manage">Manage Jobs</a>
+                                    </div>
+                                    <div class="phone_num d-none d-xl-block">
+                                        <i class="fa fa-sign-out text-light"></i>
+                                        <a href="/logout">Log Out</a>
+                                    </div>
+                                 
+                                @else
+
                                     <div class="phone_num d-none d-xl-block">
                                         <a href="/register">
                                             <i class="fa fa-user-plus text-light"></i>
@@ -72,6 +93,9 @@
                                             Log in
                                         </a>
                                     </div>
+
+                                @endauth
+
                                     <div class="d-none d-lg-block">
                                         <a class="boxed-btn3" href="/create-job">Post a Job</a>
                                     </div>

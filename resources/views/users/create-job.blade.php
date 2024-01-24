@@ -4,7 +4,10 @@
 
     <section class="contact-section section_padding">
         <div class="container">
-          
+
+        @auth
+        
+
             <div class="row align-content-center justify-content-center">
                 <div class="col-12 text-center">
                     <h2 class="contact-title">Create a New Job</h2>
@@ -19,7 +22,7 @@
                                 <div class="form-group">
                                     <input class="form-control" name="name" type="text"
                                         placeholder='Enter company name' value="{{old('name')}}">
-                                    @error('company')
+                                    @error('name')
                                         <p class="text-danger mt-1">{{$message}}</p>
                                     @enderror
                                 </div>
@@ -168,6 +171,16 @@
                 </div>
 
             </div>
+        
+        @else  
+         
+        <div class="alert alert-success">
+            Please register to post a job. Not have an account? You should <a href="/register" class="alert-link">Register</a> here.
+            </div>
+          
+           
+
+        @endauth  
         </div>
     
     </section>

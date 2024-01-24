@@ -10,8 +10,16 @@ use Illuminate\Validation\Rule;
 class JobsController extends Controller
 {
     public function all_jobs()
+    {   //dd(request);
+        return Jobs::latest()->filter(request(['category_tag','keyword','category','location']))
+        ->paginate(5)
+        ->appends(request()->query())
+        ;
+    }
+
+    public function all_data()
     {
-        return Jobs::latest()->paginate();
+        return Jobs::all();
     }
 
     public function show_single_job(Jobs $job_id)
@@ -43,18 +51,20 @@ class JobsController extends Controller
             ]
         );
 
-        Category::create( [ 'name'=>$formFields['category'] ] );
-
-        if($request->hasFile('logo')){
+        if($request->hasFile('logo'))
+        {
             $formFields['logo'] = $request->file('logo')->store('photo','public');
         }
 
+        Category::create( [ 'name'=>$formFields['category'] ] );
+
+       
         $formFields['category_id'] = Category::latest()->get('id')->first()->id;
-    
+        $formFields['user_id'] = auth()->user()->id;
+
         Jobs::create($formFields);
 
         return redirect('/')->with('message','jobs created successfully!');
     }
 
-   
 }

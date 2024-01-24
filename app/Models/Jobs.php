@@ -17,6 +17,7 @@ class Jobs extends Model
         'location',
         'category' ,
         'category_id' ,
+        'user_id' ,
         'experience' ,
         'job_type',
         'qualification'  ,
@@ -27,11 +28,47 @@ class Jobs extends Model
     ];
 
     //relationship to Category
-    public function user()
+    public function category()
     {
-        return $this->belongsTo(user::class,'category_id');
+        return $this->belongsTo(Category::class,'category_id');
     }
 
+    //relationship to Category
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 
+    public function scopeFilter($query, array $filters)
+    { 
+        //to check if tag get request isnt null or exist
+        if( $filters['category_tag'] ?? false )
+        {
+            $query->where( 'category', 'like', '%'.request('category_tag'). '%'   );
+        }
+        else if ($filters['keyword'] ?? false ) 
+        {   
+            if(request('location')!='All' && request('category')!='All')
+            {
+                $query->where( 'job_title', 'like', '%'.request('keyword'). '%'   )
+                ->where( 'location', 'like', '%'.request('location'). '%'   )
+                ->where( 'category', 'like', '%'.request('category'). '%'   );
+            }
+            else if(request('location')=='All' && request('category')!='All')
+            {
+                $query->where( 'job_title', 'like', '%'.request('keyword'). '%'   )
+                ->where( 'category', 'like', '%'.request('category'). '%'   );
+            }
+            else if(request('location')!='All' && request('category')=='All')
+            {
+                $query->where( 'job_title', 'like', '%'.request('keyword'). '%'   )
+                ->where( 'location', 'like', '%'.request('location'). '%'   );
+            }
+            else{
+                $query->where( 'job_title', 'like', '%'.request('keyword'). '%'   );
+            }
+        }
+        
+    }
 
 }

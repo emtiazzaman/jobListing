@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Jobs;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+       //  \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
@@ -25,12 +26,15 @@ class DatabaseSeeder extends Seeder
         
         //Jobs::factory(10)->create();
 
+        $user = User::factory()->create();
+
         $category = Category::factory()->create([
             'name' => 'Web Development'
         ]);
 
         Jobs::factory(10)->create([
-            'category_id' => $category->id
+            'category_id' => $category->id,
+            'user_id' =>  $user->id
         ]);
 
     }

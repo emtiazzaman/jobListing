@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,19 +34,23 @@ Route::get('/jobs/{job_id}', [JobsController::class,'show_single_job'] );
 Route::get('/create-job', [JobsController::class,'create_job'] );
 
 //store new jobs
-Route::post('/jobs-process',[JobsController::class,'store_job'] );
+Route::post('/jobs-process',[JobsController::class,'store_job'] )->middleware('auth');
 
 
 Route::get('/contact', function () {
     return view('users.contact');
 });
 
-Route::get('/register', function () {
-    return view('users.register');
-});
+Route::get('/register', [UsersController::class,'register'] )->middleware('guest');;
 
-Route::get('/login', function () {
-    return view('users.login');
-});
+Route::post('/create-user',[UsersController::class,'store_user'] );
+
+Route::get('/login',[UsersController::class,'login'] )->middleware('guest');
+
+Route::post('/logger',[UsersController::class,'logger'] );
+
+Route::get('/logout',[UsersController::class,'logout'] )->middleware('auth');
+
+
 
 

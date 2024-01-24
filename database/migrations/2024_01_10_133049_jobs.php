@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('job_title');
             $table->string('location');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('category');
             $table->string('experience');
             $table->string('job_type');

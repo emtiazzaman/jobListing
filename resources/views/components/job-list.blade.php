@@ -26,7 +26,7 @@
                                         @if ($job->logo=='')
                                             <img class="img-fluid" src="{{ asset( 'img/svg_icon/1.svg' ) }}" alt="logo">
                                         @else
-                                            <img  class="img-fluid" src="{{ asset( 'storage/'.$job->logo ) }}" alt="logo">
+                                            <img  class="img-fluid" src="{{ asset( "storage/$job->logo" ) }}" alt="logo">
                                         @endif
                                     </div>
                                     <div class="jobs_conetent">
@@ -37,6 +37,12 @@
                                             </div>
                                             <div class="location">
                                                 <p> <i class="fa fa-clock-o"></i> {{ $job->job_type }}</p>
+                                            </div>
+                                            <div class="location">
+                                                <a  href="/?category_tag={{ $job->category }}">
+                                                    <p style="color:rgb(115, 115, 231);"> <i class="fa fa-star"></i> {{ $job->category }}</p>
+                                                </a>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -63,5 +69,12 @@
                 @endunless
             </div>
         </div>
+
+        {{$jobs->links()}}
+
+        {{-- {{ $jobs->render("pagination::default") }} --}}
+
+        {{-- artisan vendor:publish --tag=laravel-pagination --}}
+
     </div>
 </div>

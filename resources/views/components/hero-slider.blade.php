@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-7 col-md-6">
                     <div class="slider_text">
-                        <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">{{count($jobs)}}+ Jobs listed</h5>
+                        <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">{{$jobs->total()}}+ Jobs listed</h5>
                         <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Find your Dream Job</h3>
                         <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide online instant cash loans with quick approval that suit your term length</p>
                         <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
